@@ -1,4 +1,4 @@
-package problems.interleaving_string;
+package problems.dynamic_programming.interleaving_string;
 
 import org.junit.jupiter.api.Test;
 

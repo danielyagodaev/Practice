@@ -1,4 +1,4 @@
-package problems.jump_game_2;
+package problems.dynamic_programming.jump_game_2;
 
 import org.junit.jupiter.api.Test;
 

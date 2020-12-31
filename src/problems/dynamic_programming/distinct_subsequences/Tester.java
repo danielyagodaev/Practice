@@ -1,6 +1,7 @@
-package problems.distinct_subsequences;
+package problems.dynamic_programming.distinct_subsequences;
 
 import org.junit.jupiter.api.Test;
+import problems.dynamic_programming.distinct_subsequences.Solution;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 

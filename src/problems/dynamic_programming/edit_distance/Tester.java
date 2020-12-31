@@ -1,4 +1,4 @@
-package problems.edit_distance;
+package problems.dynamic_programming.edit_distance;
 
 import org.junit.jupiter.api.Test;
 

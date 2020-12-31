@@ -1,4 +1,4 @@
-package problems.candies;
+package problems.dynamic_programming.candies;
 
 import org.junit.jupiter.api.Test;
 

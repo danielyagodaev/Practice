@@ -1,4 +1,4 @@
-package problems.candies;
+package problems.dynamic_programming.candies;
 
 public class Solution {
 
