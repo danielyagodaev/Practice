@@ -1,4 +1,4 @@
-package data_structers;
+package data_structers.generic;
 
 public class BinarySearchTree<T extends Comparable<T>> {
 

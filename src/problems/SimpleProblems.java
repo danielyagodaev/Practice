@@ -1,6 +1,6 @@
 package problems;
 
-import data_structers.Link;
+import data_structers.generic.Link;
 
 public class SimpleProblems {
 

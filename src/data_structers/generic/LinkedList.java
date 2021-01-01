@@ -1,4 +1,6 @@
-package data_structers;
+package data_structers.generic;
+
+import data_structers.generic.Link;
 
 public class LinkedList<T extends Comparable<T>> {
 

@@ -1,6 +1,6 @@
 package problems;
 
-import data_structers.Node;
+import data_structers.generic.Node;
 
 import java.util.Stack;
 
