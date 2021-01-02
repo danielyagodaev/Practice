@@ -32,5 +32,5 @@ Example 5:
 
 **Constraints:**
 
-0 <= s.length <= 3000
-s consists of digits only.
+- _0 <= s.length <= 3000_
+- _s_ consists of digits only.
