@@ -1,6 +1,6 @@
-package problems.atio;
+package problems.string.atio;
 
-public class Atoi {
+public class Solution {
 
     public static int myAtoi(String str) {
         int i=0, end;

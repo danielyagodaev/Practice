@@ -1,38 +1,38 @@
-package problems.atio;
+package problems.string.atio;
 
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class AtioTester {
+public class Tester {
 
     @Test
     public void test1(){
         String num = "123";
-        assertEquals(Atoi.myAtoi(num), 123);
+        assertEquals(Solution.myAtoi(num), 123);
     }
 
     @Test
     public void test2(){
         String num = "-123";
-        assertEquals(Atoi.myAtoi(num), -123);
+        assertEquals(Solution.myAtoi(num), -123);
     }
 
     @Test
     public void test3(){
         String num = "                       45";
-        assertEquals(Atoi.myAtoi(num), 45);
+        assertEquals(Solution.myAtoi(num), 45);
     }
 
     @Test
     public void test4(){
         String num = "-200000000000000000";
-        assertEquals(Atoi.myAtoi(num), Integer.MIN_VALUE);
+        assertEquals(Solution.myAtoi(num), Integer.MIN_VALUE);
     }
 
     @Test
     public void test5(){
         String num = "200000000000000000";
-        assertEquals(Atoi.myAtoi(num), Integer.MAX_VALUE);
+        assertEquals(Solution.myAtoi(num), Integer.MAX_VALUE);
     }
 }
