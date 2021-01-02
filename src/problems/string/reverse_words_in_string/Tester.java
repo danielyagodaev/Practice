@@ -1,4 +1,4 @@
-package problems.general.reverse_words_in_string;
+package problems.string.reverse_words_in_string;
 
 import org.junit.jupiter.api.Test;
 
