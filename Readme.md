@@ -1,8 +1,8 @@
-In this repository, I keep my solutions to a coding questions I solved, while practicing.
+In this repository, I keep my solutions to coding questions which I solved.
 
 The code here is written in **Java**.
 
-Most of the questions are taken from https://leetcode.com/.
+Most of the questions here are taken from https://leetcode.com/.
 
 If there is an option to validate the solution easily, there will be tests also.
 
