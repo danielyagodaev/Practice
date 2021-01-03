@@ -1,7 +1,5 @@
 package data_structers;
 
-import com.sun.source.tree.Tree;
-
 public class TreeNode {
 
     private int _val;
