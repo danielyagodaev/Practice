@@ -1,4 +1,4 @@
-In this repository, I keep my solutions to a coding questions I solved, while practicing.
+In this repository, I keep my solutions to coding questions I solved, while practicing.
 
 The code here is written in **Java**.
 
