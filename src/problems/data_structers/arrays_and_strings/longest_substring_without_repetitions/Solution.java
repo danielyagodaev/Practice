@@ -10,23 +10,23 @@ public class Solution {
             return n;
         }
         HashSet<Character> chars = new HashSet<>();
-        int currCount = 0, maxCount = 0;
+        int currCount = 0, maxCount = 0, start = 0;
         for (int i=0; i<n; i++){
             char c = s.charAt(i);
             if (chars.contains(c)){
                 maxCount = Math.max(maxCount, currCount);
                 int j = i-1;
-                while (j >= 0 && s.charAt(j) != c){
+                while (j >= start && s.charAt(j) != c){
                     j--;
                 }
-                int prefix = currCount - (i-j-1);
-                for (int k=1; k<prefix; k++){
-                    char temp = s.charAt(j-k);
+                for (int k=start; k<j; k++){
+                    char temp = s.charAt(k);
                     if (chars.contains(temp)){
                         chars.remove(temp);
                         currCount--;
                     }
                 }
+                start = j+1;
             }
             else{
                 chars.add(c);

@@ -4,14 +4,6 @@ import data_structers.ListNode;
 
 public class Solution {
 
-    /**
-     * Assumptions:
-     * The number of nodes in the list is sz.
-     * 1 <= sz <= 30
-     * 0 <= Node.val <= 100
-     * 1 <= n <= sz
-     * Need to do it in one pass
-     */
     public ListNode removeNthFromEnd(ListNode head, int n) {
         ListNode[] allNodes = new ListNode[30];
         for (int i=0; i<allNodes.length; i++){
