@@ -1,4 +1,4 @@
-package problems.data_structers.arrays_and_strings.permutation_sequence;
+package problems.math.permutation_sequence;
 
 import java.util.ArrayList;
 

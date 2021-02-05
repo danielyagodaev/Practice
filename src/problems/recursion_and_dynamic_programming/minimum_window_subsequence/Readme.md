@@ -5,8 +5,7 @@ such minimum-length windows, return the one with the left-most starting index.
 
 **Example:**
 
-- Input:
-- s = "abcdebdde", t = "bde"
+- Input: s = "abcdebdde", t = "bde"
 - Output: "bcde"
 - Explanation: There are many substrings with "bde" but the smallest amongst them is "bcde" and "bdde" of length 4.
   Out of these 2, "bcde" occurs first, Hence it is the answer.
