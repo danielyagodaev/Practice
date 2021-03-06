@@ -1,100 +1,116 @@
 package problems.recursion_and_dynamic_programming.the_skyline_problem;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 public class Solution {
 
     public List<List<Integer>> getSkyline(int[][] buildings){
-        if (buildings.length == 1){
-            List<List<Integer>> res = new ArrayList<>();
-            Integer[][] buildingData = {{buildings[0][0], buildings[0][2]}, {buildings[0][1], 0}};
-            for (Integer[] building : buildingData){
-                res.add(Arrays.asList(building));
+        List<List<Integer>> helper = new ArrayList<>();
+        for (int[] buildingData : buildings){
+            List<Integer> lst = new ArrayList<>();
+            for (int val : buildingData){
+                lst.add(val);
             }
-            return res;
+            helper.add(lst);
         }
-        else{
-            return mergeSkylines(getSkyline(splitL(buildings)), getSkyline(splitR(buildings)));
+        removeDuplicates(helper);
+        mergeSameHeights(helper);
+        List<BuildingIndex> buildingIndexes = new ArrayList<>();
+        for (List<Integer> buildingData : helper){
+            BuildingIndex start = new BuildingIndex(buildingData.get(0), buildingData.get(2), false);
+            BuildingIndex end = new BuildingIndex(buildingData.get(1), buildingData.get(2), true);
+            Collections.addAll(buildingIndexes, start, end);
         }
-    }
-
-    private int[][] splitL(int[][] buildings){
-        int mid = buildings.length / 2;
-        int[][] res = new int[mid][3];
-        for (int i=0; i<mid; i++){
-            res[i] = Arrays.copyOf(buildings[i], 3);
-        }
-        return res;
-    }
-
-    private int[][] splitR(int[][] buildings){
-        int mid = buildings.length / 2;
-        int[][] res = new int[buildings.length-mid][3];
-        for (int i=0; i<res.length; i++){
-            res[i] = Arrays.copyOf(buildings[mid+i], 3);
-        }
-        return res;
-    }
-
-    private List<List<Integer>> mergeSkylines(List<List<Integer>> leftPart, List<List<Integer>> rightPart){
+        Collections.sort(buildingIndexes);
         List<List<Integer>> res = new ArrayList<>();
-        int n = leftPart.size(), m = rightPart.size();
-        int i = 0, j = 0;
-        int h1 = 0, h2 = 0;
-        List<Integer> leftStrip, rightStrip;
-        while (i < n && j < m){
-            leftStrip = leftPart.get(i);
-            rightStrip = rightPart.get(j);
-            if (leftStrip.get(0) < rightStrip.get(0)){
-                h1 = leftStrip.get(1);
-                leftStrip.set(1, Math.max(h1, h2));
-                addStrip(res, leftStrip);
-                i++;
+        TreeMap<Integer, Integer> maxHeights = new TreeMap<>();
+        for (BuildingIndex buildingIndex : buildingIndexes){
+            if (buildingIndex._isEnd){
+                int temp = maxHeights.remove(buildingIndex._height);
+                if (temp > 1) {
+                    maxHeights.put(buildingIndex._height, temp - 1);
+                }
             }
             else{
-                h2 = rightStrip.get(1);
-                rightStrip.set(1, Math.max(h1, h2));
-                addStrip(res, rightStrip);
-                j++;
+                int count = maxHeights.getOrDefault(buildingIndex._height, 0);
+                maxHeights.put(buildingIndex._height, count+1);
             }
-        }
-        while (i < n){
-            addStrip(res, leftPart.get(i));
-            i++;
-        }
-        while (j < m){
-            addStrip(res, rightPart.get(j));
-            j++;
+            int currMaxHeight = maxHeights.isEmpty() ? 0 : maxHeights.lastKey();
+            addStrip(res, buildingIndex._index, currMaxHeight);
         }
         return res;
     }
 
-    private void addStrip(List<List<Integer>> res, List<Integer> strip){
+    private void removeDuplicates(List<List<Integer>> helper){
+        int i = 1;
+        while (i < helper.size()){
+            List<Integer> curr = helper.get(i);
+            List<Integer> prev = helper.get(i-1);
+            if (buildingInsideBuilding(prev, curr) || buildingInsideBuilding(curr, prev)){
+                // Same range
+                prev.set(0, Math.min(prev.get(0), curr.get(0)));
+                prev.set(1, Math.max(prev.get(1), curr.get(1)));
+                prev.set(2, Math.max(prev.get(2), curr.get(2)));
+                helper.remove(i);
+            }
+            else{
+                i++;
+            }
+        }
+    }
+
+    private boolean buildingInsideBuilding(List<Integer> building1, List<Integer> building2){
+        return (building1.get(0) <= building2.get(0) && building1.get(1) >= building2.get(1) &&
+                building1.get(2) >= building2.get(2));
+    }
+
+    private void mergeSameHeights(List<List<Integer>> helper){
+        int i = 1;
+        while (i < helper.size()){
+            List<Integer> curr = helper.get(i);
+            List<Integer> prev = helper.get(i-1);
+            if (curr.get(0) <= prev.get(1) && curr.get(2).equals(prev.get(2))){
+                // Same height with interleaving ranges
+                prev.set(1, Math.max(prev.get(1), curr.get(1)));
+                helper.remove(i);
+            }
+            else{
+                i++;
+            }
+        }
+    }
+
+    private void addStrip(List<List<Integer>> res, Integer index, Integer height){
         int n = res.size();
-        if (n > 0 && res.get(n-1).get(1).equals(strip.get(1))){
+        if (n > 0 && res.get(n-1).get(1).equals(height)){
             // same height, don't add it
             return;
         }
-        else if (n > 0 && res.get(n-1).get(0).equals(strip.get(0))){
+        else if (n > 0 && res.get(n-1).get(0).equals(index)){
             // same index
-            res.get(n-1).set(1, Math.max(res.get(n-1).get(1), strip.get(1)));
+            res.get(n-1).set(1, Math.max(res.get(n-1).get(1), height));
             return;
         }
-        res.add(strip);
+        Integer[] newStrip = {index, height};
+        res.add(Arrays.asList(newStrip));
     }
 
-    public static void printSkyline(List<List<Integer>> skyline){
-        for (List<Integer> strip : skyline){
-            System.out.printf("{%d, %d}\n", strip.get(0), strip.get(1));
+    static class BuildingIndex implements Comparable<BuildingIndex> {
+
+        Integer _index;
+        Integer _height;
+        Boolean _isEnd;
+
+        public BuildingIndex(int index, int height, boolean isEnd){
+            this._index = index;
+            this._height = height;
+            this._isEnd = isEnd;
+        }
+
+        @Override
+        public int compareTo(BuildingIndex o){
+            return this._index.compareTo(o._index);
         }
     }
 
-    public static void main(String[] args){
-        int[][] buildings = {{2,9,10},{3,7,15},{5,12,12},{15,20,10},{19,24,8}};
-        Solution s = new Solution();
-        List<List<Integer>> skyline = s.getSkyline(buildings);
-        printSkyline(skyline);
-    }
 }
