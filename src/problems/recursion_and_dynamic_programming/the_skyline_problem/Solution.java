@@ -6,15 +6,37 @@ public class Solution {
 
     public List<List<Integer>> getSkyline(int[][] buildings){
         List<List<Integer>> helper = new ArrayList<>();
-        for (int[] buildingData : buildings){
-            List<Integer> lst = new ArrayList<>();
-            for (int val : buildingData){
-                lst.add(val);
+        for (int[] currBuilding : buildings){
+            Integer[] currBuildingArr = {currBuilding[0], currBuilding[1], currBuilding[2]};
+            List<Integer> currBuildingLst = Arrays.asList(currBuildingArr);
+            int i = 0;
+            boolean shouldAdd = true;
+            while (i < helper.size()){
+                List<Integer> prevBuilding = helper.get(i);
+                if (buildingContainsBuilding(prevBuilding, currBuildingLst)){
+                    // There is already a building which contains the current building, don't add it
+                    shouldAdd = false;
+                    break;
+                }
+                else if (buildingContainsBuilding(currBuildingLst, prevBuilding)){
+                    // The current building contains one of the existing buildings, remove it
+                    helper.remove(i);
+                    continue;
+                }
+                else if (currBuildingLst.get(2).equals(prevBuilding.get(2))
+                        && currBuildingLst.get(0) <= prevBuilding.get(1)){
+                    // If there are two overlapping building with the same height, merge them
+                    currBuildingLst.set(0, Math.min(currBuildingLst.get(0), prevBuilding.get(0)));
+                    currBuildingLst.set(1, Math.max(currBuildingLst.get(1), prevBuilding.get(1)));
+                    helper.remove(i);
+                    continue;
+                }
+                i++;
             }
-            helper.add(lst);
+            if (shouldAdd){
+                helper.add(currBuildingLst);
+            }
         }
-        removeDuplicates(helper);
-        mergeSameHeights(helper);
         List<BuildingIndex> buildingIndexes = new ArrayList<>();
         for (List<Integer> buildingData : helper){
             BuildingIndex start = new BuildingIndex(buildingData.get(0), buildingData.get(2), false);
@@ -25,6 +47,7 @@ public class Solution {
         List<List<Integer>> res = new ArrayList<>();
         TreeMap<Integer, Integer> maxHeights = new TreeMap<>();
         for (BuildingIndex buildingIndex : buildingIndexes){
+            // Use TreeMap(maxHeights) to hold the current highest building
             if (buildingIndex._isEnd){
                 int temp = maxHeights.remove(buildingIndex._height);
                 if (temp > 1) {
@@ -41,43 +64,9 @@ public class Solution {
         return res;
     }
 
-    private void removeDuplicates(List<List<Integer>> helper){
-        int i = 1;
-        while (i < helper.size()){
-            List<Integer> curr = helper.get(i);
-            List<Integer> prev = helper.get(i-1);
-            if (buildingInsideBuilding(prev, curr) || buildingInsideBuilding(curr, prev)){
-                // Same range
-                prev.set(0, Math.min(prev.get(0), curr.get(0)));
-                prev.set(1, Math.max(prev.get(1), curr.get(1)));
-                prev.set(2, Math.max(prev.get(2), curr.get(2)));
-                helper.remove(i);
-            }
-            else{
-                i++;
-            }
-        }
-    }
-
-    private boolean buildingInsideBuilding(List<Integer> building1, List<Integer> building2){
+    private boolean buildingContainsBuilding(List<Integer> building1, List<Integer> building2){
         return (building1.get(0) <= building2.get(0) && building1.get(1) >= building2.get(1) &&
                 building1.get(2) >= building2.get(2));
-    }
-
-    private void mergeSameHeights(List<List<Integer>> helper){
-        int i = 1;
-        while (i < helper.size()){
-            List<Integer> curr = helper.get(i);
-            List<Integer> prev = helper.get(i-1);
-            if (curr.get(0) <= prev.get(1) && curr.get(2).equals(prev.get(2))){
-                // Same height with interleaving ranges
-                prev.set(1, Math.max(prev.get(1), curr.get(1)));
-                helper.remove(i);
-            }
-            else{
-                i++;
-            }
-        }
     }
 
     private void addStrip(List<List<Integer>> res, Integer index, Integer height){
