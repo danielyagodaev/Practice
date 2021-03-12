@@ -9,20 +9,20 @@ public class Tester {
     public void test1(){
         String s = "abcdebdde";
         String t = "bde";
-        assertEquals(Solution.minWindow(s, t), "bcde");
+        assertEquals("bcde", Solution.minWindow(s, t));
     }
 
     @Test
     public void test2(){
         String s = "abdecfegabc";
         String t = "abc";
-        assertEquals(Solution.minWindow(s, t), "abc");
+        assertEquals("abc", Solution.minWindow(s, t));
     }
 
     @Test
     public void test3(){
         String s = "abcdef";
         String t = "fg";
-        assertEquals(Solution.minWindow(s, t), "");
+        assertEquals("", Solution.minWindow(s, t));
     }
 }

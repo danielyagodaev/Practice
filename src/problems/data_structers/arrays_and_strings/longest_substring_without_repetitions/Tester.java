@@ -9,24 +9,24 @@ public class Tester {
     @Test
     public void test1(){
         String s = "abcabcbb";
-        assertEquals(Solution.lengthOfLongestSubstring(s), 3);
+        assertEquals(3, Solution.lengthOfLongestSubstring(s));
     }
 
     @Test
     public void test2(){
         String s = "abcdef";
-        assertEquals(Solution.lengthOfLongestSubstring(s), 6);
+        assertEquals(6, Solution.lengthOfLongestSubstring(s));
     }
 
     @Test
     public void test3(){
         String s = "ababcabcd";
-        assertEquals(Solution.lengthOfLongestSubstring(s), 4);
+        assertEquals(4, Solution.lengthOfLongestSubstring(s));
     }
 
     @Test
     public void test4(){
         String s = "aaaaaaaaaa";
-        assertEquals(Solution.lengthOfLongestSubstring(s), 1);
+        assertEquals(1, Solution.lengthOfLongestSubstring(s));
     }
 }

@@ -9,12 +9,12 @@ public class Tester {
     @Test
     public void test1(){
         String s = "aacecaaa";
-        assertEquals("aaacecaaa", Solution.shortestPalindrome(s));
+        assertEquals(Solution.shortestPalindrome(s), "aaacecaaa");
     }
 
     @Test
     public void test2(){
         String s = "abcd";
-        assertEquals("dcbabcd", Solution.shortestPalindrome(s));
+        assertEquals(Solution.shortestPalindrome(s), "dcbabcd");
     }
 }

@@ -17,18 +17,18 @@ public class Tester {
     @Test
     public void test1(){
         double res = getFixedResult(2.00000, 10);
-        assertEquals(res, 1024.00000);
+        assertEquals(1024.00000, res);
     }
 
     @Test
     public void test2(){
         double res = getFixedResult(2.10000, 3);
-        assertEquals(res, 9.26100);
+        assertEquals(9.26100, res);
     }
 
     @Test
     public void test3(){
         double res = getFixedResult(2.00000, -2);
-        assertEquals(res, 0.25000);
+        assertEquals(0.25000, res);
     }
 }

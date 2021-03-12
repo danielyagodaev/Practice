@@ -22,7 +22,7 @@ public class Solution {
             sb.append(' ');
         }
         int n = sb.length();
-        return sb.toString().substring(0, n-1);
+        return sb.substring(0, n-1);
     }
 
 }

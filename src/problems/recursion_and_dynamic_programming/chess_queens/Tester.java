@@ -8,11 +8,11 @@ public class Tester {
 
     @Test
     public void test1(){
-        assertEquals(Solution.count(8), 92);
+        assertEquals(92, Solution.count(8));
     }
 
     @Test
     public void test2(){
-        assertEquals(Solution.count(1), 1);
+        assertEquals(1, Solution.count(1));
     }
 }

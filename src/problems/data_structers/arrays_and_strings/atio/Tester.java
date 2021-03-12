@@ -9,30 +9,30 @@ public class Tester {
     @Test
     public void test1(){
         String num = "123";
-        assertEquals(Solution.myAtoi(num), 123);
+        assertEquals(123, Solution.myAtoi(num));
     }
 
     @Test
     public void test2(){
         String num = "-123";
-        assertEquals(Solution.myAtoi(num), -123);
+        assertEquals(-123, Solution.myAtoi(num));
     }
 
     @Test
     public void test3(){
         String num = "                       45";
-        assertEquals(Solution.myAtoi(num), 45);
+        assertEquals(45, Solution.myAtoi(num));
     }
 
     @Test
     public void test4(){
         String num = "-200000000000000000";
-        assertEquals(Solution.myAtoi(num), Integer.MIN_VALUE);
+        assertEquals(Integer.MIN_VALUE, Solution.myAtoi(num));
     }
 
     @Test
     public void test5(){
         String num = "200000000000000000";
-        assertEquals(Solution.myAtoi(num), Integer.MAX_VALUE);
+        assertEquals(Integer.MAX_VALUE, Solution.myAtoi(num));
     }
 }

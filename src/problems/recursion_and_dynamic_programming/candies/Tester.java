@@ -9,12 +9,12 @@ public class Tester {
     @Test
     public void test1(){
         int[] ratings = {1,0,2};
-        assertEquals(Solution.candy(ratings), 5);
+        assertEquals(5, Solution.candy(ratings));
     }
 
     @Test
     public void test2(){
         int[] ratings = {1,2,2};
-        assertEquals(Solution.candy(ratings), 4);
+        assertEquals(4, Solution.candy(ratings));
     }
 }

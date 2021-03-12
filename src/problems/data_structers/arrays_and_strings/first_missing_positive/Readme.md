@@ -2,8 +2,6 @@ Given an unsorted integer array _nums_, find the smallest missing positive integ
 
 **Follow up**: Could you implement an algorithm that runs in _O(n)_ time and uses constant extra space.?
 
-
-
 **Example 1:**
 
 - Input: nums = [1,2,0]

@@ -10,20 +10,20 @@ public class Tester {
     public void test1(){
         String s = "ADOBECODEBANC";
         String t = "ABC";
-        assertEquals(Solution.minWindow(s, t), "BANC");
+        assertEquals("BANC", Solution.minWindow(s, t));
     }
 
     @Test
     public void test2(){
         String s = "a";
         String t = "a";
-        assertEquals(Solution.minWindow(s, t), "a");
+        assertEquals("a", Solution.minWindow(s, t));
     }
 
     @Test
     public void test3(){
         String s = "ADEBCA";
         String t = "ABC";
-        assertEquals(Solution.minWindow(s, t), "BCA");
+        assertEquals("BCA", Solution.minWindow(s, t));
     }
 }

@@ -8,21 +8,22 @@ public class Tester {
 
     @Test
     public void test1(){
-        assertEquals(Solution.countDigitOne(13), 6);
+        assertEquals(6, Solution.countDigitOne(13));
     }
 
     @Test
     public void test2(){
-        assertEquals(Solution.countDigitOne(0), 0);
+        assertEquals(0, Solution.countDigitOne(0));
     }
 
     @Test
     public void test3(){
-        assertEquals(Solution.countDigitOne(1), 1);
+        assertEquals(1, Solution.countDigitOne(1));
     }
 
-    @Test void test4(){
-        assertEquals(Solution.countDigitOne(113), 40);
+    @Test
+    public void test4(){
+        assertEquals(40, Solution.countDigitOne(113));
     }
 
 }

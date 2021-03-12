@@ -10,20 +10,20 @@ public class Tester {
     public void test1(){
         int n = 3;
         int k = 3;
-        assertEquals(Solution.getPermutation(n,k), "213");
+        assertEquals("213", Solution.getPermutation(n,k));
     }
 
     @Test
     public void test2(){
         int n = 4;
         int k = 9;
-        assertEquals(Solution.getPermutation(n,k), "2314");
+        assertEquals("2314", Solution.getPermutation(n,k));
     }
 
     @Test
     public void test3(){
         int n = 3;
         int k = 1;
-        assertEquals(Solution.getPermutation(n,k), "123");
+        assertEquals("123", Solution.getPermutation(n,k));
     }
 }

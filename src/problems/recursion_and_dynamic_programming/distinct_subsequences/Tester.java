@@ -10,13 +10,13 @@ public class Tester {
     public void test1(){
         String s = "rabbbit";
         String t = "rabbit";
-        assertEquals(Solution.numDistinct(s, t), 3);
+        assertEquals(3, Solution.numDistinct(s, t));
     }
 
     @Test
     public void test2(){
         String s = "babgbag";
         String t = "bag";
-        assertEquals(Solution.numDistinct(s, t), 5);
+        assertEquals(5, Solution.numDistinct(s, t));
     }
 }

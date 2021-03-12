@@ -9,30 +9,30 @@ public class Tester {
     @Test
     public void test1(){
         String s = "  hello world  ";
-        assertEquals(Solution.reverseWords(s), "world hello");
+        assertEquals("world hello", Solution.reverseWords(s));
     }
 
     @Test
     public void test2(){
         String s = "a good   example";
-        assertEquals(Solution.reverseWords(s), "example good a");
+        assertEquals("example good a", Solution.reverseWords(s));
     }
 
     @Test
     public void test3(){
         String s = "the sky is blue";
-        assertEquals(Solution.reverseWords(s), "blue is sky the");
+        assertEquals("blue is sky the", Solution.reverseWords(s));
     }
 
     @Test
     public void test4(){
         String s = "  Bob    Loves  Alice   ";
-        assertEquals(Solution.reverseWords(s), "Alice Loves Bob");
+        assertEquals("Alice Loves Bob", Solution.reverseWords(s));
     }
 
     @Test
     public void test5(){
         String s = "Alice does not even like bob";
-        assertEquals(Solution.reverseWords(s), "bob like even not does Alice");
+        assertEquals("bob like even not does Alice", Solution.reverseWords(s));
     }
 }

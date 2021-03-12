@@ -13,7 +13,7 @@ public class Tester {
         TreeNode n2 = new TreeNode(2);
         TreeNode n3 = new TreeNode(3);
         TreeNode n1 = new TreeNode(1, n2, n3);
-        assertEquals(Solution.maxPathSum(n1), 6);
+        assertEquals(6, Solution.maxPathSum(n1), 6);
     }
 
     @Test
@@ -23,7 +23,7 @@ public class Tester {
         TreeNode n3 = new TreeNode(20, n4, n5);
         TreeNode n2 = new TreeNode(9);
         TreeNode n1 = new TreeNode(-10, n2, n3);
-        assertEquals(Solution.maxPathSum(n1), 42);
+        assertEquals(42, Solution.maxPathSum(n1));
     }
 
 }
