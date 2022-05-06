@@ -7,6 +7,7 @@ public class Solution {
 
     public static List<List<Integer>> criticalConnections(int n, List<List<Integer>> connections) {
         if (connections.size() == n - 1) {
+            // Already a tree - all connections are critical
             return connections;
         }
         List<List<Integer>> res = new ArrayList<>();
@@ -29,22 +30,26 @@ public class Solution {
         return connectionsArray;
     }
 
-    private static boolean isCriticalConnection(List<Integer> connection, boolean[][] connectionsArray) {
+    public static boolean isCriticalConnection(List<Integer> connection, boolean[][] connectionsArray) {
         int minServer = Math.min(connection.get(0), connection.get(1));
         int maxServer = Math.max(connection.get(0), connection.get(1));
         connectionsArray[minServer][maxServer] = false;
-        boolean res = isConnectedNetwork(connectionsArray);
+        boolean res = areServersConnected(minServer, maxServer, connectionsArray);
         connectionsArray[minServer][maxServer] = true;
+        // If the 2 servers are still connected, then the connection is not critical
         return !res;
     }
 
-    private static boolean isConnectedNetwork(boolean[][] connectionsArray) {
+    public static boolean areServersConnected(int src, int dest, boolean[][] connectionsArray) {
         int n = connectionsArray.length;
         boolean[] visited = new boolean[n];
         List<Integer> queue = new ArrayList<>();
-        queue.add(0);
+        queue.add(src);
         while (!queue.isEmpty()) {
             int server = queue.remove(0);
+            if (server == dest) {
+                return true;
+            }
             for (int i=0; i<n; i++) {
                 if (i == server) {
                     continue;
@@ -55,13 +60,7 @@ public class Solution {
             }
             visited[server] = true;
         }
-        int visitedCount = 0;
-        for (boolean wasVisit : visited) {
-            if (wasVisit) {
-                visitedCount++;
-            }
-        }
-        return visitedCount == n;
+        return false;
     }
 
 }
